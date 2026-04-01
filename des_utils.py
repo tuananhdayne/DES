@@ -1,5 +1,7 @@
 import os
+import time
 from manual_des import ManualDES
+from des_logging import log_message, log_operation
 
 BLOCK_SIZE = 8
 
@@ -7,38 +9,126 @@ def get_random_bytes(num_bytes: int) -> bytes:
     # Sử dụng os.urandom thay vì Crypto.Random
     return os.urandom(num_bytes)
 
-def encrypt_file(input_file, output_file, key): #mã hóa file gửi đi 
-    iv = get_random_bytes(8)
-    # Khởi tạo thuật toán DES thủ công
-    cipher = ManualDES(key, mode='CBC', iv=iv)   # Tạo một instance của lớp ManualDES với key đã cho, chế độ CBC, và IV ngẫu nhiên. Instance này sẽ được sử dụng để mã hóa dữ liệu từ file gốc. Chế độ CBC yêu cầu một IV để đảm bảo rằng cùng một plaintext sẽ tạo ra các ciphertext khác nhau mỗi khi được mã hóa, tăng cường tính bảo mật của quá trình mã hóa.
-
-    with open(input_file, "rb") as f: #đọc file gốc ở chế độ nhị phân ("rb") để đảm bảo rằng dữ liệu được đọc chính xác mà không bị thay đổi do các vấn đề về mã hóa ký tự. Dữ liệu đọc được sẽ được lưu vào biến data, sau đó sẽ được mã hóa bằng thuật toán DES thủ công và ghi vào file đích. Nếu quá trình mã hóa thành công, file đích sẽ chứa dữ liệu đã được mã hóa sẵn sàng để gửi đi.
-        data = f.read()
-
-    # Mã hóa dữ liệu (đã tự động đệm PKCS7 bên trong hàm encrypt)
-    encrypted_data = cipher.encrypt(data) 
-
-    with open(output_file, "wb") as f:  # ghi vào file đích ở chế độ nhị phân ("wb") để đảm bảo rằng dữ liệu được ghi chính xác mà không bị thay đổi do các vấn đề về mã hóa ký tự. Trong file đích, IV sẽ được ghi vào 8 bytes đầu tiên, sau đó là dữ liệu mã hóa. Điều này cho phép máy nhận biết được IV cần thiết để giải mã dữ liệu khi nhận được file này.
-        # Ghi IV vào 8 bytes đầu tiên, sau đó là dữ liệu mã hóa
-        f.write(iv + encrypted_data)
-
-    print("Ma hoa thanh cong:", output_file)
-
-
-def decrypt_file(input_file, output_file, key):  # Giải mã file đã mã hóa. Hàm này sẽ đọc dữ liệu mã hóa từ file, tách IV ra khỏi phần đầu của dữ liệu, sau đó sử dụng thuật toán DES thủ công để giải mã phần còn lại của dữ liệu. Kết quả giải mã sẽ được ghi vào một file mới. Nếu quá trình giải mã thành công, nội dung của file output_file sẽ là bản gốc của dữ liệu trước khi được mã hóa.
-    with open(input_file, "rb") as f:
-        data = f.read()
-
-    # Lấy 8 bytes đầu làm IV
-    iv = data[:8]
-    ciphertext = data[8:]
-
-    cipher = ManualDES(key, mode='CBC', iv=iv)
+def encrypt_file(input_file, output_file, key, mode='CBC'):
+    """
+    Mã hóa file sử dụng DES
     
-    # Giải mã và loại bỏ đệm padding
-    decrypted_data = cipher.decrypt(ciphertext)
+    Args:
+        input_file: đường dẫn file gốc
+        output_file: đường dẫn file mã hóa
+        key: khóa DES (8 bytes)
+        mode: chế độ mã hóa ('CBC' hoặc 'ECB')
+    """
+    start_time = time.time()
+    
+    try:
+        # Log bắt đầu
+        log_message(f"🔒 Bắt đầu mã hóa: {os.path.basename(input_file)} (Mode: {mode})")
+        
+        # Đọc file
+        with open(input_file, "rb") as f:
+            data = f.read()
+        
+        file_size = len(data)
+        log_message(f"   Kích thước file: {file_size} bytes")
+        
+        # Tạo IV nếu CBC mode
+        iv = get_random_bytes(8) if mode == 'CBC' else None
+        
+        # Mã hóa
+        cipher = ManualDES(key, mode=mode, iv=iv)
+        encrypted_data = cipher.encrypt(data)
+        
+        log_message(f"   Dữ liệu mã hóa: {len(encrypted_data)} bytes")
+        
+        # Ghi file - Format: [1 byte mode] + [8 bytes IV if CBC] + [encrypted data]
+        with open(output_file, "wb") as f:
+            mode_byte = bytes([1 if mode == 'CBC' else 0])
+            f.write(mode_byte)
+            
+            if mode == 'CBC':
+                f.write(iv)
+            
+            f.write(encrypted_data)
+        
+        duration = time.time() - start_time
+        
+        # Log thành công
+        log_message(f"✅ Mã hóa thành công! Thời gian: {duration:.3f}s")
+        log_operation("encrypt", os.path.basename(input_file), mode, file_size, duration, "success")
+        
+        return True
+        
+    except Exception as e:
+        duration = time.time() - start_time
+        error_msg = f"❌ Lỗi mã hóa: {str(e)}"
+        log_message(error_msg)
+        log_operation("encrypt", os.path.basename(input_file), mode, 0, duration, "failed", str(e))
+        return False
 
-    with open(output_file, "wb") as f:
-        f.write(decrypted_data)
 
-    print("Giai ma thanh cong:", output_file)
+def decrypt_file(input_file, output_file, key):
+    """
+    Giải mã file DES
+    
+    Args:
+        input_file: đường dẫn file mã hóa
+        output_file: đường dẫn file sau giải mã
+        key: khóa DES (8 bytes)
+    
+    Returns: True nếu thành công, False nếu thất bại
+    """
+    start_time = time.time()
+    
+    try:
+        # Đọc file
+        with open(input_file, "rb") as f:
+            data = f.read()
+        
+        if len(data) < 1:
+            raise ValueError("File mã hóa rỗng hoặc không hợp lệ")
+        
+        # Đọc mode byte
+        mode_byte = data[0]
+        mode = 'CBC' if mode_byte == 1 else 'ECB'
+        
+        log_message(f"🔓 Bắt đầu giải mã: {os.path.basename(input_file)} (Mode: {mode})")
+        
+        offset = 1
+        iv = None
+        
+        # Đọc IV nếu CBC mode
+        if mode == 'CBC':
+            if len(data) < 9:
+                raise ValueError("File mã hóa không đủ IV bytes")
+            iv = data[1:9]
+            offset = 9
+            log_message(f"   IV được đọc từ file")
+        
+        ciphertext = data[offset:]
+        file_size = len(ciphertext)
+        log_message(f"   Kích thước dữ liệu mã hóa: {file_size} bytes")
+        
+        # Giải mã
+        cipher = ManualDES(key, mode=mode, iv=iv)
+        decrypted_data = cipher.decrypt(ciphertext)
+        
+        # Ghi file
+        with open(output_file, "wb") as f:
+            f.write(decrypted_data)
+        
+        duration = time.time() - start_time
+        
+        # Log thành công
+        log_message(f"✅ Giải mã thành công! Thời gian: {duration:.3f}s")
+        log_message(f"   File giải mã: {len(decrypted_data)} bytes")
+        log_operation("decrypt", os.path.basename(input_file), mode, file_size, duration, "success")
+        
+        return True
+        
+    except Exception as e:
+        duration = time.time() - start_time
+        error_msg = f"❌ Lỗi giải mã: {str(e)}"
+        log_message(error_msg)
+        log_operation("decrypt", os.path.basename(input_file), "unknown", 0, duration, "failed", str(e))
+        return False

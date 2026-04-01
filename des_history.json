@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2026-04-01T23:44:57.968617",
+    "action": "encrypt",
+    "filename": "data.txt",
+    "mode": "CBC",
+    "file_size_bytes": 1896,
+    "duration_seconds": 0.079,
+    "status": "success",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-04-01T23:45:09.234515",
+    "action": "encrypt",
+    "filename": "data.txt",
+    "mode": "CBC",
+    "file_size_bytes": 1896,
+    "duration_seconds": 0.081,
+    "status": "success",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-04-01T23:45:09.325102",
+    "action": "decrypt",
+    "filename": "received.enc",
+    "mode": "CBC",
+    "file_size_bytes": 1904,
+    "duration_seconds": 0.086,
+    "status": "success",
+    "details": ""
+  }
+]

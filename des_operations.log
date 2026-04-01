@@ -1,0 +1,13 @@
+[2026-04-01 23:44:57] 🔒 Bắt đầu mã hóa: data.txt (Mode: CBC)
+[2026-04-01 23:44:57]    Kích thước file: 1896 bytes
+[2026-04-01 23:44:57]    Dữ liệu mã hóa: 1904 bytes
+[2026-04-01 23:44:57] ✅ Mã hóa thành công! Thời gian: 0.079s
+[2026-04-01 23:45:09] 🔒 Bắt đầu mã hóa: data.txt (Mode: CBC)
+[2026-04-01 23:45:09]    Kích thước file: 1896 bytes
+[2026-04-01 23:45:09]    Dữ liệu mã hóa: 1904 bytes
+[2026-04-01 23:45:09] ✅ Mã hóa thành công! Thời gian: 0.081s
+[2026-04-01 23:45:09] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-01 23:45:09]    IV được đọc từ file
+[2026-04-01 23:45:09]    Kích thước dữ liệu mã hóa: 1904 bytes
+[2026-04-01 23:45:09] ✅ Giải mã thành công! Thời gian: 0.086s
+[2026-04-01 23:45:09]    File giải mã: 1896 bytes

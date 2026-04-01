@@ -3,9 +3,10 @@ import socket
 import threading
 import tkinter as tk
 from datetime import datetime
-from tkinter import filedialog, messagebox
+from tkinter import filedialog, messagebox, ttk
 
 from des_utils import decrypt_file
+from des_logging import view_history, get_statistics
 
 
 class ReceiverApp:
@@ -85,7 +86,7 @@ class ReceiverApp:
         button_wrap.pack()
         self.btn_start = tk.Button(
             button_wrap,
-            text="Bat Dau Nhan",
+            text="Bắt Đầu Nhận",
             command=self.start_listen,
             bg="#4CAF50",
             fg="white",
@@ -97,7 +98,7 @@ class ReceiverApp:
 
         self.btn_stop = tk.Button(
             button_wrap,
-            text="Dung",
+            text="Dừng",
             command=self.stop_listen,
             bg="#c0392b",
             fg="white",
@@ -107,6 +108,18 @@ class ReceiverApp:
             state=tk.DISABLED,
         )
         self.btn_stop.pack(side=tk.LEFT, padx=8)
+
+        self.btn_history = tk.Button(
+            button_wrap,
+            text="📜 Lịch sử",
+            command=self.show_history,
+            bg="#2196F3",
+            fg="white",
+            font=("Arial", 10),
+            width=10,
+            height=2
+        )
+        self.btn_history.pack(side=tk.LEFT, padx=8)
 
         self.encrypted_entry.bind("<KeyRelease>", lambda _event: self.refresh_path_preview())
         self.decrypted_entry.bind("<KeyRelease>", lambda _event: self.refresh_path_preview())
@@ -312,6 +325,38 @@ class ReceiverApp:
             except OSError:
                 pass
             self.server_socket = None
+
+    def show_history(self):
+        """Hiển thị lịch sử hoạt động"""
+        history = view_history(limit=20)
+        stats = get_statistics()
+        
+        if not history:
+            messagebox.showinfo("Lịch sử", "Chưa có lịch sử hoạt động nào.")
+            return
+        
+        # Tạo cửa sổ mới
+        hist_win = tk.Toplevel(self.root)
+        hist_win.title("Lịch sử hoạt động")
+        hist_win.geometry("700x450")
+        
+        # Thống kê header
+        stats_text = f"""Thống kê:  Tổng: {stats['total_operations']} | Mã hóa: {stats['encryptions']} 
+Giải mã: {stats['decryptions']} | Thành công: {stats['successful']} | Thất bại: {stats['failed']}
+Dữ liệu: {stats['total_data_mb']} MB | Thời gian: {stats['total_time_seconds']}s"""
+        
+        tk.Label(hist_win, text=stats_text, font=("Consolas", 9), justify=tk.LEFT, bg="#f0f0f0").pack(padx=10, pady=10, fill="x")
+        
+        # Bảng lịch sử
+        text_widget = tk.Text(hist_win, height=18, font=("Consolas", 8))
+        text_widget.pack(fill="both", expand=True, padx=10, pady=(0, 10))
+        
+        for entry in history:
+            timestamp = entry['timestamp'].split('T')[1][:8]
+            line = f"[{timestamp}] {entry['action'].upper():8s} {entry['filename']:20s} Mode:{entry['mode']:4s} Size:{entry['file_size_bytes']:8d}B Status:{entry['status']:8s}\n"
+            text_widget.insert(tk.END, line)
+        
+        text_widget.config(state=tk.DISABLED)
 
     def on_close(self):
         self.stop_listen()
