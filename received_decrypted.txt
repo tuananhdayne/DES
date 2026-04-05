@@ -1,7 +1,1 @@
-Để thực hiện thao tác mã hóa và giải mã tin nhắn DES sử dụng cùng một key riêng tư. Và tất nhiên key này cả người nhận và người gửi đều nhận biết và sử dụng được. Từ khi ra đời nó đã trở thành thuật toán khóa đối xứng nhằm mục đích mã hóa dữ liệu điện tử. Hiện tại nó đã bị thay thế bởi tiêu chuẩn mã hóa nâng cao AES với tính năng bảo mật tốt hơn. Dưới đây là một số tính năng cơ bản tác động tới cách thức hoạt động của DES:
-
-Key mật mã: DES sử dụng phương pháp mật mã khối, điều này có nghĩa là mỗi khối dữ liệu sẽ được áp dụng bởi một key mật mã và thuật toán. DES sẽ nhóm plain text (văn bản thuần túy) thành các khối 64 bit. Bằng cách kết hợp và hoán vị các khối của plain text sẽ được chuyển đổi thành Ciphertext (văn bản đã mã hóa).
-Vòng mã hóa: Dữ liệu sẽ được DES mã hóa 16 lần với bốn chế độ khác nhau. Từng khối riêng lẻ sẽ được mã hóa hoặc bắt buộc các khối mật mã phải phụ thuộc vào những khối trước đó. Riêng về giải mã thì đơn giản chỉ là nghịch đảo của mã hóa, tức là quy trình thực hiện tương tự nhưng đảo ngược thứ tự các key.
-Phím 64 bit: Thực tế cho thấy mặc dù DES sử dụng key 64 bit nhưng có 8 bit trong số đó đã được dùng để kiểm tra chẵn lẻ. Vì lẽ đó là key hiệu dụng chỉ có 56 bit.
-Thay thế và hoán vị: Đây là hai quy trình mà Ciphertext phải trải qua trong quá trình mã hóa.
-Khả năng tương thích ngược (tương thích với phiên bản cũ): Trong một số trường hợp DES cũng cung cấp khả năng này.
+Xin chào! Đây là tin nhắn tiếng Việt có dấu. Mọi thứ vẫn hoạt động hoàn hảo nhé.
