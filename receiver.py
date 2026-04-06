@@ -256,6 +256,15 @@ class ReceiverApp:
             decrypt_file(encrypted_file, decrypted_file, key_bytes)
             self.root.after(0, lambda: self.log("Giai ma thanh cong."))
 
+            # Lấy thời gian giải mã từ lịch sử để hiển thị trên GUI
+            history = view_history(limit=1)
+            if history:
+                last_entry = history[-1]
+                if last_entry.get("action") == "decrypt" and last_entry.get("status") == "success":
+                    duration = last_entry.get("duration_seconds")
+                    if duration is not None:
+                        self.root.after(0, lambda d=duration: self.log(f"Thoi gian giai ma: {d:.3f}s"))
+
             self.root.after(
                 0,
                 lambda: self.on_receive_success(

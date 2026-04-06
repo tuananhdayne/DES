@@ -147,6 +147,15 @@ class SenderApp:
             if not result:
                 self.root.after(0, lambda: self.on_send_error("Mã hóa file thất bại!"))
                 return
+
+            # Lấy thời gian mã hóa từ lịch sử để hiển thị trên GUI
+            history = view_history(limit=1)
+            if history:
+                last_entry = history[-1]
+                if last_entry.get("action") == "encrypt" and last_entry.get("status") == "success":
+                    duration = last_entry.get("duration_seconds")
+                    if duration is not None:
+                        self.root.after(0, lambda d=duration: self.log(f"✓ Thời gian mã hóa: {d:.3f}s"))
             
             self.root.after(0, lambda: self.log(f"✓ Mã hóa thành công. File: {encrypted_file}"))
             

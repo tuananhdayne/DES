@@ -4,7 +4,7 @@ from manual_des import ManualDES
 from des_logging import log_message, log_operation
 
 BLOCK_SIZE = 8
-
+# random iV cho CBC mode
 def get_random_bytes(num_bytes: int) -> bytes:
     # Sử dụng os.urandom thay vì Crypto.Random
     return os.urandom(num_bytes)
@@ -116,7 +116,7 @@ def decrypt_file(input_file, output_file, key):
         # Ghi file
         with open(output_file, "wb") as f:
             f.write(decrypted_data)
-        
+#tính thời gian thực hiện        
         duration = time.time() - start_time
         
         # Log thành công

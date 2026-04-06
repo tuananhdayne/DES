@@ -1,1 +1,50 @@
-Xin chào! Đây là tin nhắn tiếng Việt có dấu. Mọi thứ vẫn hoạt động hoàn hảo nhé.
+1.1 Khái niệm cơ bản về Hệ thống An toàn thông tin
+    An toàn thông tin (Information Security) là lĩnh vực khoa học nghiên cứu  về việc bảo vệ thông tin và hệ thống thông tin khỏi việc truy cập, sử dụng,  tiết lộ, gián đoạn, sửa đổi hoặc phá hủy trái phép. Trong bối cảnh hiện đại,  an toàn thông tin không chỉ giới hạn ở việc bảo vệ dữ liệu số mà còn bao  gồm cả việc bảo vệ cơ sở hạ tầng vật lý, con người và quy trình vận hành.
+    Một hệ thống thông tin an toàn phải đảm bảo rằng dữ liệu được thu thập,  lưu trữ, xử lý và truyền tải một cách đáng tin cậy. Điều này đòi hỏi sự kết  hợp của nhiều lớp bảo vệ: từ phần cứng (tường lửa, router), phần mềm (phần mềm diệt virus, hệ thống phát hiện xâm nhập IDS/IPS), đến các chính sách và quy trình quản lý (chính sách mật khẩu, đào tạo nhân viên).
+1.1.1 Mục tiêu và yêu cầu của Bảo mật thông tin (CIA Triad)
+    Nền tảng cốt lõi của mọi hệ thống an toàn thông tin được xây dựng dựa trên mô hình tam giác CIA Triad – ba trụ cột tối thượng:
+    a) Confidentiality – Tính bảo mật:
+Tính bảo mật đảm bảo rằng thông tin chỉ được truy cập bởi những người hoặc hệ thống được ủy quyền hợp pháp. Nói cách khác, nếu một kẻ tấn công chặn được luồng dữ liệu trên đường truyền, hắn ta cũng không thể đọc được nội dung thực sự của thông điệp. Các thuật toán mã hóa như DES, AES, RSA chính là công cụ chủ lực để thực hiện mục tiêu này. Khi dữ liệu được mã hóa, nó biến thành một chuỗi ký tự vô nghĩa (ciphertext) mà chỉ người sở hữu khóa giải mã (decryption key) mới có thể khôi phục lại bản rõ (plaintext).
+    Ví dụ thực tế: Khi bạn đăng nhập vào trang web ngân hàng, thông tin mật khẩu và số tài khoản của bạn được mã hóa bằng giao thức TLS/SSL trước khi truyền qua Internet, đảm bảo rằng ngay cả nhà cung cấp dịch vụ mạng (ISP) cũng không thể đọc được thông tin này.
+    b) Integrity – Tính toàn vẹn:
+Tính toàn vẹn đảm bảo rằng thông tin không bị thay đổi, chèn thêm hoặc xóa bỏ trái phép trong quá trình lưu trữ hoặc truyền tải. Điều này có nghĩa là người nhận phải có khả năng xác minh rằng dữ liệu nhận được chính xácgiống với dữ liệu mà người gửi đã gửi đi, không bị can thiệp bởi bất kỳ bên thứ ba nào. Các cơ chế đảm bảo tính toàn vẹn bao gồm: hàm băm (hash functions) như MD5, SHA-256; chữ ký số (digital signatures); và mã xác thực thông điệp (MAC – Message Authentication Code).
+Ví dụ thực tế: Khi bạn tải một phần mềm từ trang chủ của nhà phát triển, họ thường cung cấp kèm một mã hash SHA-256. Sau khi tải về, bạn tính lại mã hash của file đã tải và so sánh với mã hash trên trang chủ. Nếu hai mã hash khớp nhau, file không bị thay đổi trên đường truyền.
+    c) Availability – Tính sẵn sàng:
+    Tính sẵn sàng đảm bảo rằng hệ thống thông tin và dữ liệu luôn ở trạng thái hoạt động ổn định và có thể truy cập được bất cứ khi nào người dùng hợp pháp cần. Các cuộc tấn công từ chối dịch vụ (DoS/DDoS) là mối đe dọa trực tiếp đến tính sẵn sàng, khi kẻ tấn công gửi hàng triệu yêu cầu giả mạo đến server khiến nó quá tải và không thể phục vụ người dùng thật.
+    Để đảm bảo tính sẵn sàng, các tổ chức thường triển khai: hệ thống dự phòng (redundancy), cân bằng tải (load balancing), sao lưu dữ liệu định kỳ (backup), và các giải pháp chống DDoS.
+1.1.2 Các nguy cơ và thách thức trên không gian mạng
+    Mạng Internet là môi trường truyền dẫn phân tán và về bản chất là không tin cậy (untrusted network). Khi một gói dữ liệu được gửi từ máy A đến máy B, nó phải đi qua nhiều nút mạng trung gian (routers, switches, gateways) thuộc sở hữu của nhiều tổ chức khác nhau trên toàn thế giới. Tại bất kỳ nút mạng nào, dữ liệu đều có nguy cơ bị:
+    a) Nghe lén (Eavesdropping/Sniffing):
+   	 Kẻ tấn công sử dụng các công cụ bắt gói tin (packet sniffer) như Wireshark để chặn và đọc nội dung của các gói dữ liệu đang truyền trên mạng. Nếu dữ liệu được truyền dưới dạng văn bản thuần (plaintext), toàn bộ nội dung sẽ bị lộ hoàn toàn. Đây là lý do quan trọng nhất khiến mã hóa dữ liệu trở thành bắt buộc.
+    b) Tấn công Man-In-The-Middle (MITM):
+    Trong kiểu tấn công này, kẻ tấn công đứng giữa hai bên giao tiếp, chặn toàn bộ luồng dữ liệu, có thể đọc, sửa đổi nội dung rồi mới chuyển tiếp đến người nhận. Người gửi và người nhận hoàn toàn không biết rằng thông tin của họ đã bị can thiệp. Để chống lại MITM, cần kết hợp mã hóa với xác thực (authentication).
+    c) Thay đổi nội dung (Tampering):
+    Kẻ tấn công không chỉ đọc mà còn sửa đổi nội dung dữ liệu trước khi chuyển tiếp đến người nhận. Ví dụ: thay đổi số tiền trong một giao dịch chuyển khoản, hoặc chèn mã độc vào một file phần mềm đang được tải về.
+    d) Giả mạo danh tính (Spoofing):
+    Kẻ tấn công giả danh một thực thể đáng tin cậy (như ngân hàng, đồng nghiệp) để lừa nạn nhân cung cấp thông tin nhạy cảm. Phishing là một hình thức phổ biến của spoofing.
+    e) Tấn công từ chối dịch vụ (DoS/DDoS):
+    Kẻ tấn công làm quá tải hệ thống bằng cách gửi lượng lớn yêu cầu giả mạo, khiến hệ thống không thể phục vụ người dùng hợp pháp.
+    Để chống lại những mối đe dọa trên, mật mã học (Cryptography) là bộ môn khoa học cấp thiết và quan trọng bậc nhất, cung cấp các công cụ toán học để bảo vệ thông tin một cách có hệ thống.
+1.2 Tổng quan về chuyên ngành Mật mã học
+    Mật mã học (Cryptography) là ngành khoa học nghiên cứu các kỹ thuật toán học nhằm đảm bảo an toàn cho thông tin. Từ "Cryptography" có nguồn gốc từ tiếng Hy Lạp: "kryptós" (ẩn giấu) và "graphein" (viết), nghĩa đen là "viết chữ bí mật". Mật mã học đã tồn tại từ hàng nghìn năm trước, từ mật mã Caesar của La Mã cổ đại cho đến các thuật toán hiện đại ngày nay.
+    Các khái niệm cơ bản trong mật mã học:
+oPlaintext (Bản rõ): Dữ liệu gốc, chưa được mã hóa.
+oCiphertext (Bản mã): Dữ liệu sau khi đã được mã hóa, có dạng vô nghĩa đối với người không có khóa giải mã.
+oEncryption (Mã hóa): Quá trình biến plaintext thành ciphertext.
+oDecryption (Giải mã): Quá trình biến ciphertext trở lại plaintext.
+oKey (Khóa): Tham số bí mật được sử dụng trong quá trình mã hóa và giải mã.Độ an toàn của hệ mật mã phụ thuộc rất lớn vào tính bí mật của khóa.
+1.2.1 Phân loại Mật mã học (Khóa đối xứng và Khóa bất đối xứng)
+    Dựa trên cách sử dụng khóa, mật mã học được chia thành hai loại chính:
+a) Mã hóa khóa đối xứng (Symmetric-Key Encryption):
+    Trong hệ mã hóa đối xứng, cả người gửi và người nhận đều sử dụng CÙNG MỘT khóa bí mật (secret key) để mã hóa và giải mã dữ liệu. Điều này giống như việc hai người sử dụng cùng một chiếc chìa khóa để khóa và mở một chiếc két sắt.
+• Ưu điểm:
+oTốc độ xử lý cực nhanh, phù hợp cho việc mã hóa lượng lớn dữ liệu.
+oThuật toán đơn giản hơn so với mã hóa bất đối xứng.
+oYêu cầu tài nguyên tính toán thấp.
+• Nhược điểm:
+oVấn đề phân phối khóa: Làm thế nào để truyền khóa bí mật đến người nhận một cách an toàn? Nếu khóa bị lộ trên đường truyền, toàn bộ hệ thống mã hóa sẽ bị phá vỡ.
+oQuản lý số lượng lớn khóa: Nếu có n người cần giao tiếp bí mật với nhau, cần n*(n-1)/2 cặp khóa khác nhau.
+    Các thuật toán tiêu biểu: DES (56-bit key), 3DES (112-bit hoặc 168-bit key), AES (128/192/256-bit key), Blowfish, RC4.
+b) Mã hóa khóa bất đối xứng (Asymmetric-Key Encryption):
+    Hệ mã hóa bất đối xứng sử dụng một cặp khóa: Khóa công khai (Public Key) và Khóa bí mật (Private Key). Khóa công khai được chia sẻ tự do cho mọi người, trong khi khóa bí mật chỉ người sở hữu mới biết.
+    Quy trình: Người gửi sử dụng khóa công khai của người nhận để mã hóa. Chỉ người nhận (sở hữu khóa bí mật tương ứng) mới có thể giải mã được.

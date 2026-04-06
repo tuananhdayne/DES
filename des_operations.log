@@ -76,3 +76,118 @@
 [2026-04-05 21:20:48]    Kích thước dữ liệu mã hóa: 112 bytes
 [2026-04-05 21:20:48] ✅ Giải mã thành công! Thời gian: 0.006s
 [2026-04-05 21:20:48]    File giải mã: 108 bytes
+[2026-04-05 22:43:38] 🔒 Bắt đầu mã hóa: dulieu.txt (Mode: CBC)
+[2026-04-05 22:43:38]    Kích thước file: 108 bytes
+[2026-04-05 22:43:38]    Dữ liệu mã hóa: 112 bytes
+[2026-04-05 22:43:38] ✅ Mã hóa thành công! Thời gian: 0.010s
+[2026-04-05 22:43:38] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-05 22:43:38]    IV được đọc từ file
+[2026-04-05 22:43:38]    Kích thước dữ liệu mã hóa: 112 bytes
+[2026-04-05 22:43:38] ✅ Giải mã thành công! Thời gian: 0.009s
+[2026-04-05 22:43:38]    File giải mã: 79 bytes
+[2026-04-05 22:44:13] 🔒 Bắt đầu mã hóa: dulieu.txt (Mode: CBC)
+[2026-04-05 22:44:13]    Kích thước file: 108 bytes
+[2026-04-05 22:44:13]    Dữ liệu mã hóa: 112 bytes
+[2026-04-05 22:44:13] ✅ Mã hóa thành công! Thời gian: 0.010s
+[2026-04-05 22:44:13] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-05 22:44:13]    IV được đọc từ file
+[2026-04-05 22:44:13]    Kích thước dữ liệu mã hóa: 112 bytes
+[2026-04-05 22:44:13] ✅ Giải mã thành công! Thời gian: 0.003s
+[2026-04-05 22:44:13]    File giải mã: 108 bytes
+[2026-04-05 22:48:02] 🔒 Bắt đầu mã hóa: dulieu.txt (Mode: ECB)
+[2026-04-05 22:48:02]    Kích thước file: 108 bytes
+[2026-04-05 22:48:02]    Dữ liệu mã hóa: 112 bytes
+[2026-04-05 22:48:02] ✅ Mã hóa thành công! Thời gian: 0.011s
+[2026-04-05 22:48:02] 🔓 Bắt đầu giải mã: received.enc (Mode: ECB)
+[2026-04-05 22:48:02]    Kích thước dữ liệu mã hóa: 112 bytes
+[2026-04-05 22:48:02] ✅ Giải mã thành công! Thời gian: 0.004s
+[2026-04-05 22:48:02]    File giải mã: 108 bytes
+[2026-04-05 22:49:03] 🔒 Bắt đầu mã hóa: dulieu.txt (Mode: CBC)
+[2026-04-05 22:49:03]    Kích thước file: 108 bytes
+[2026-04-05 22:49:03]    Dữ liệu mã hóa: 112 bytes
+[2026-04-05 22:49:03] ✅ Mã hóa thành công! Thời gian: 0.008s
+[2026-04-05 22:49:03] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-05 22:49:03]    IV được đọc từ file
+[2026-04-05 22:49:03]    Kích thước dữ liệu mã hóa: 112 bytes
+[2026-04-05 22:49:03] ✅ Giải mã thành công! Thời gian: 0.005s
+[2026-04-05 22:49:03]    File giải mã: 0 bytes
+[2026-04-05 22:49:56] 🔒 Bắt đầu mã hóa: dulieu.txt (Mode: CBC)
+[2026-04-05 22:49:56]    Kích thước file: 131 bytes
+[2026-04-05 22:49:56]    Dữ liệu mã hóa: 136 bytes
+[2026-04-05 22:49:56] ✅ Mã hóa thành công! Thời gian: 0.020s
+[2026-04-05 22:49:57] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-05 22:49:57]    IV được đọc từ file
+[2026-04-05 22:49:57]    Kích thước dữ liệu mã hóa: 136 bytes
+[2026-04-05 22:49:57] ✅ Giải mã thành công! Thời gian: 0.000s
+[2026-04-05 22:49:57]    File giải mã: 49 bytes
+[2026-04-05 22:50:54] 🔒 Bắt đầu mã hóa: dulieu.txt (Mode: CBC)
+[2026-04-05 22:50:54]    Kích thước file: 131 bytes
+[2026-04-05 22:50:54]    Dữ liệu mã hóa: 136 bytes
+[2026-04-05 22:50:54] ✅ Mã hóa thành công! Thời gian: 0.012s
+[2026-04-05 22:50:54] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-05 22:50:54]    IV được đọc từ file
+[2026-04-05 22:50:54]    Kích thước dữ liệu mã hóa: 136 bytes
+[2026-04-05 22:50:54] ✅ Giải mã thành công! Thời gian: 0.000s
+[2026-04-05 22:50:54]    File giải mã: 20 bytes
+[2026-04-05 22:51:39] 🔒 Bắt đầu mã hóa: dulieu.txt (Mode: ECB)
+[2026-04-05 22:51:39]    Kích thước file: 131 bytes
+[2026-04-05 22:51:39]    Dữ liệu mã hóa: 136 bytes
+[2026-04-05 22:51:39] ✅ Mã hóa thành công! Thời gian: 0.020s
+[2026-04-05 22:51:40] 🔓 Bắt đầu giải mã: received.enc (Mode: ECB)
+[2026-04-05 22:51:40]    Kích thước dữ liệu mã hóa: 136 bytes
+[2026-04-05 22:51:40] ✅ Giải mã thành công! Thời gian: 0.006s
+[2026-04-05 22:51:40]    File giải mã: 61 bytes
+[2026-04-05 23:00:49] 🔒 Bắt đầu mã hóa: dulieu.txt (Mode: CBC)
+[2026-04-05 23:00:49]    Kích thước file: 131 bytes
+[2026-04-05 23:00:49]    Dữ liệu mã hóa: 136 bytes
+[2026-04-05 23:00:49] ✅ Mã hóa thành công! Thời gian: 0.009s
+[2026-04-05 23:00:49] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-05 23:00:49]    IV được đọc từ file
+[2026-04-05 23:00:49]    Kích thước dữ liệu mã hóa: 136 bytes
+[2026-04-05 23:00:49] ✅ Giải mã thành công! Thời gian: 0.013s
+[2026-04-05 23:00:49]    File giải mã: 95 bytes
+[2026-04-06 09:56:14] 🔒 Bắt đầu mã hóa: data.txt (Mode: CBC)
+[2026-04-06 09:56:14]    Kích thước file: 9713 bytes
+[2026-04-06 09:56:14]    Dữ liệu mã hóa: 9720 bytes
+[2026-04-06 09:56:14] ✅ Mã hóa thành công! Thời gian: 0.303s
+[2026-04-06 09:56:14] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-06 09:56:14]    IV được đọc từ file
+[2026-04-06 09:56:14]    Kích thước dữ liệu mã hóa: 9720 bytes
+[2026-04-06 09:56:14] ✅ Giải mã thành công! Thời gian: 0.349s
+[2026-04-06 09:56:14]    File giải mã: 9713 bytes
+[2026-04-06 10:10:21] 🔒 Bắt đầu mã hóa: data.txt (Mode: CBC)
+[2026-04-06 10:10:21]    Kích thước file: 9713 bytes
+[2026-04-06 10:10:22]    Dữ liệu mã hóa: 9720 bytes
+[2026-04-06 10:10:22] ✅ Mã hóa thành công! Thời gian: 0.345s
+[2026-04-06 10:10:22] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-06 10:10:22]    IV được đọc từ file
+[2026-04-06 10:10:22]    Kích thước dữ liệu mã hóa: 9720 bytes
+[2026-04-06 10:10:22] ✅ Giải mã thành công! Thời gian: 0.349s
+[2026-04-06 10:10:22]    File giải mã: 9713 bytes
+[2026-04-06 10:12:16] 🔒 Bắt đầu mã hóa: data.txt (Mode: CBC)
+[2026-04-06 10:12:16]    Kích thước file: 9713 bytes
+[2026-04-06 10:12:16]    Dữ liệu mã hóa: 9720 bytes
+[2026-04-06 10:12:16] ✅ Mã hóa thành công! Thời gian: 0.298s
+[2026-04-06 10:12:16] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-06 10:12:16]    IV được đọc từ file
+[2026-04-06 10:12:16]    Kích thước dữ liệu mã hóa: 9720 bytes
+[2026-04-06 10:12:16] ✅ Giải mã thành công! Thời gian: 0.311s
+[2026-04-06 10:12:16]    File giải mã: 9713 bytes
+[2026-04-06 10:13:43] 🔒 Bắt đầu mã hóa: data.txt (Mode: CBC)
+[2026-04-06 10:13:43]    Kích thước file: 9713 bytes
+[2026-04-06 10:13:44]    Dữ liệu mã hóa: 9720 bytes
+[2026-04-06 10:13:44] ✅ Mã hóa thành công! Thời gian: 0.285s
+[2026-04-06 10:13:44] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-06 10:13:44]    IV được đọc từ file
+[2026-04-06 10:13:44]    Kích thước dữ liệu mã hóa: 9720 bytes
+[2026-04-06 10:13:44] ✅ Giải mã thành công! Thời gian: 0.402s
+[2026-04-06 10:13:44]    File giải mã: 9713 bytes
+[2026-04-06 10:14:40] 🔒 Bắt đầu mã hóa: data.txt (Mode: CBC)
+[2026-04-06 10:14:40]    Kích thước file: 9713 bytes
+[2026-04-06 10:14:40]    Dữ liệu mã hóa: 9720 bytes
+[2026-04-06 10:14:40] ✅ Mã hóa thành công! Thời gian: 0.297s
+[2026-04-06 10:14:40] 🔓 Bắt đầu giải mã: received.enc (Mode: CBC)
+[2026-04-06 10:14:40]    IV được đọc từ file
+[2026-04-06 10:14:40]    Kích thước dữ liệu mã hóa: 9720 bytes
+[2026-04-06 10:14:40] ✅ Giải mã thành công! Thời gian: 0.326s
+[2026-04-06 10:14:40]    File giải mã: 9713 bytes
