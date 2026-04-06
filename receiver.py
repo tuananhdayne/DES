@@ -253,7 +253,11 @@ class ReceiverApp:
 
             self.root.after(0, lambda: self.log(f"Nhan xong {total_bytes} bytes du lieu ma hoa."))
 
-            decrypt_file(encrypted_file, decrypted_file, key_bytes)
+            decrypt_ok = decrypt_file(encrypted_file, decrypted_file, key_bytes)
+            if not decrypt_ok:
+                self.root.after(0, lambda: self.on_receive_error("Giai ma that bai. Kiem tra khoa DES va noi dung file ma hoa."))
+                return
+
             self.root.after(0, lambda: self.log("Giai ma thanh cong."))
 
             # Lấy thời gian giải mã từ lịch sử để hiển thị trên GUI

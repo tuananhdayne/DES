@@ -21,8 +21,13 @@ def log_message(message: str):
     
     with open(LOG_FILE, 'a', encoding='utf-8') as f:
         f.write(log_line + '\n')
-    
-    print(log_line)
+
+    # Tránh crash khi terminal Windows không hỗ trợ một số ký tự Unicode/emoji
+    try:
+        print(log_line)
+    except UnicodeEncodeError:
+        safe_line = log_line.encode('ascii', errors='replace').decode('ascii')
+        print(safe_line)
 
 def log_operation(action: str, filename: str, mode: str, file_size: int, 
                   duration: float, status: str = "success", details: str = ""):

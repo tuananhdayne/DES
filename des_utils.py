@@ -90,6 +90,9 @@ def decrypt_file(input_file, output_file, key):
         
         # Đọc mode byte
         mode_byte = data[0]
+        if mode_byte not in (0, 1):
+            raise ValueError("File mã hóa không hợp lệ (mode byte không đúng)")
+
         mode = 'CBC' if mode_byte == 1 else 'ECB'
         
         log_message(f"🔓 Bắt đầu giải mã: {os.path.basename(input_file)} (Mode: {mode})")
@@ -106,6 +109,11 @@ def decrypt_file(input_file, output_file, key):
             log_message(f"   IV được đọc từ file")
         
         ciphertext = data[offset:]
+        if len(ciphertext) == 0:
+            raise ValueError("File mã hóa không có dữ liệu ciphertext")
+        if len(ciphertext) % BLOCK_SIZE != 0:
+            raise ValueError("Ciphertext không hợp lệ (không chia hết cho 8 bytes)")
+
         file_size = len(ciphertext)
         log_message(f"   Kích thước dữ liệu mã hóa: {file_size} bytes")
         

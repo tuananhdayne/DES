@@ -309,7 +309,19 @@ def unpad_pkcs7(data: bytes) -> bytes:   #gỡ bỏ padding PKCS7
     """Loại bỏ padding PKCS7
     Ví dụ: b'Hello\x03\x03\x03' → b'Hello'
     """
+    if not data:
+        raise ValueError("Dữ liệu rỗng, không thể bỏ padding")
+
     pad_len = data[-1]
+
+    # PKCS7 với block size 8: pad_len phải trong khoảng 1..8
+    if pad_len < 1 or pad_len > 8:
+        raise ValueError("Padding không hợp lệ (sai khóa hoặc dữ liệu hỏng)")
+
+    # Toàn bộ pad bytes cuối phải cùng giá trị pad_len
+    if data[-pad_len:] != bytes([pad_len] * pad_len):
+        raise ValueError("Padding không hợp lệ (sai khóa hoặc dữ liệu hỏng)")
+
     return data[:-pad_len]
 
 # ============================================================================
